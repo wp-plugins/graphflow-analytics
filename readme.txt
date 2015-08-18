@@ -36,8 +36,8 @@ Our *beautiful dashboard* keeps your finger on the pulse of your store, and prov
 2. [Sign up for a Graphflow account](https://app.graphflow.com/accounts/signup/)
 3. Watch your revenue grow as we recommend the most relevant products to your customers!
 
-Want to see it in action? Check out our [WooCommerce demo store](http://demo.graphflow.com) with over 1000 products,
-complete with recommendations on product pages, the shopping cart, shop pages, and using our shortcode and widget - all powered by Graphflow!
+Want to see it in action? Check out our [WooCommerce demo store](http://demo.graphflow.com),
+complete with recommendations on product pages, the shopping cart, and using our shortcode and widget - all powered by Graphflow!
 
 = Support =
 
