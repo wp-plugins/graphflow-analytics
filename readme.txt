@@ -101,6 +101,13 @@ Please see our [documentation page](http://docs.woothemes.com/document/woocommer
 
 == Changelog ==
 
+= 3.0.1 =
+2015.08.19
+
+* Fix - compatibility with WooCommerce Follow Up Emails plugin
+* Fix - occasional AJAX rec bug
+* Tweak - add filter for product link text in email recommendations
+
 = 3.0.0 =
 2015.08.17
 

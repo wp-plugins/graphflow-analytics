@@ -5,7 +5,7 @@
 	Description: Recommendations, follow-up email, coupons, customer insights, analytics dashboard, conversion tracking and much more!
 	Author: Graphflow
 	Author URI: http://graphflow.com/
-	Version: 3.0.0
+	Version: 3.0.1
 	Requires at least: 3.9
 	Tested up to: 4.2.4
 	Developer: Graphflow
@@ -41,7 +41,7 @@ if ( in_array( 'woocommerce-recommendations-by-graphflow/woocommerce-graphflow.p
 if ( ! function_exists( 'gf_activation_hook_2' ) ) {
 	function gf_activation_hook_2() {
 		update_option( 'woocommerce_graphflow_install_notice', false );
-		update_option( 'woocommerce_graphflow_plugin_version', '3.0.0' );
+		update_option( 'woocommerce_graphflow_plugin_version', '3.0.1' );
 	}
 }
 

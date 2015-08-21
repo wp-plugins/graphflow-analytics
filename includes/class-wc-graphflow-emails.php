@@ -68,8 +68,10 @@ if ( ! class_exists( 'WC_Graphflow_Emails' ) ) {
 		}
 
 		private function includes() {
-			require 'action-scheduler/action-scheduler.php';
-			require 'action-scheduler/functions.php';
+			if ( ! function_exists( 'wc_schedule_single_action' ) ) {
+				require 'action-scheduler/action-scheduler.php';
+				//require 'action-scheduler/functions.php';
+			}
 			include 'class-wc-graphflow-as-logger.php';
 		}
 
@@ -866,18 +868,20 @@ if ( ! class_exists( 'WC_Graphflow_Emails' ) ) {
 				$coupon_args['coupon_code'] = $gf_recId;
 				$coupon = $this->create_coupon( $coupon_args, false );
 				// log that a coupon was sent with this email recommendation
-				$wc_coupon = new WC_Coupon( $coupon['code'] );
-				if ( $wc_coupon ) {
-					woocommerce_graphflow_post_event( $gf_userid, array( array (
-						'gf_action'           => 'coupon_sent',
-						'gf_rec_id'           => $wc_coupon->code,
-						'gf_product_id'       => '',
-						'gf_interaction_data' => $GLOBALS['wc_graphflow']->extract_coupon_data( $wc_coupon )
-					) ) );
-				} else {
-					$GLOBALS['wc_graphflow']->get_api()->log->add(
-						"graphflow",
-						"Error in coupon generation for code: " . $gf_recId. "; request: " . $_SERVER['REQUEST_URI'] );
+				if ( !empty( $coupon ) ) {
+					$wc_coupon = new WC_Coupon( $coupon['code'] );
+					if ( $wc_coupon->exists ) {
+						woocommerce_graphflow_post_event( $gf_userid, array( array (
+							'gf_action'           => 'coupon_sent',
+							'gf_rec_id'           => $wc_coupon->code,
+							'gf_product_id'       => '',
+							'gf_interaction_data' => $GLOBALS['wc_graphflow']->extract_coupon_data( $wc_coupon )
+						) ) );
+					} else {
+						$GLOBALS['wc_graphflow']->get_api()->log->add(
+							"graphflow",
+							"Error in coupon generation for code: " . $gf_recId. "; request: " . $_SERVER['REQUEST_URI'] );
+					}
 				}
 			}
 

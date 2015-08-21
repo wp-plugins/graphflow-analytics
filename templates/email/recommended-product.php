@@ -14,6 +14,8 @@ if ( !$product ) {
     <?php
 }
 
+$a_text = apply_filters( 'woocommerce_graphflow_recommended_products_email_a_text', 'View Product' );
+
 // Ensure visibilty
 if ( !$product->is_visible() )
     return;
@@ -28,6 +30,6 @@ $permalink = esc_url_raw( add_query_arg( $args, get_the_permalink() ) );
     <h3><?php the_title(); ?></h3>
     <div>
         <div class="graphflow-price"><?php echo $product->get_price_html(); ?></div>
-        <a class="graphflow-more-link" href="<?php echo $permalink; ?>" title="<?php the_title(); ?>">View Product</a>
+        <a class="graphflow-more-link" href="<?php echo $permalink; ?>" title="<?php the_title(); ?>"><?php echo $a_text; ?></a>
     </div>
 </td>

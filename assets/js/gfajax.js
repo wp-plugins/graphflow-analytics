@@ -50,37 +50,38 @@ jQuery( document ).ready(function( $ ) {
 	// asynchronously request the html from admin-ajax.php
 	$( ".graphflow_recommendations_placeholder" ).each(function(i){
 		var that = $(this);
-		// handle widget recs
+		var rec_params = JSON.parse(JSON.stringify(gf_params));
+        // handle widget recs
 		if (typeof $(this).attr( "gf_widget_id" ) !== undefined && $(this).attr( "gf_widget_id" ) != null) {
-			gf_params.gf_widget_id = $(this).attr( "gf_widget_id" ) || null;
+			rec_params.gf_widget_id = $(this).attr( "gf_widget_id" ) || null;
 		}
 		// handle shortcode recs
 		if (typeof $(this).attr( "gf_is_shortcode" ) !== undefined && $(this).attr( "gf_is_shortcode" ) != null) {
-			gf_params.gf_is_shortcode = $(this).attr( "gf_is_shortcode" ) || null;
+			rec_params.gf_is_shortcode = $(this).attr( "gf_is_shortcode" ) || null;
 			if (typeof $(this).attr( "gf_title" ) !== undefined && $(this).attr( "gf_title" ) != null) {
-				gf_params.gf_title = $(this).attr( "gf_title" ) || null;
+				rec_params.gf_title = $(this).attr( "gf_title" ) || null;
 			}
 			if (typeof $(this).attr( "gf_num" ) !== undefined && $(this).attr( "gf_num" ) != null) {
-				gf_params.gf_num = $(this).attr( "gf_num" ) || null;
+				rec_params.gf_num = $(this).attr( "gf_num" ) || null;
 			}
 			if (typeof $(this).attr( "gf_columns" ) !== undefined && $(this).attr( "gf_columns" ) != null) {
-				gf_params.gf_columns = $(this).attr( "gf_columns" ) || null;
+				rec_params.gf_columns = $(this).attr( "gf_columns" ) || null;
 			}
 			if (typeof $(this).attr( "gf_product_id" ) !== undefined && $(this).attr( "gf_product_id" ) != null) {
-				gf_params.gf_product_id = $(this).attr( "gf_product_id" ) || null;
+				rec_params.gf_product_id = $(this).attr( "gf_product_id" ) || null;
 			}
 			if (typeof $(this).attr( "gf_product_cat" ) !== undefined && $(this).attr( "gf_product_cat" ) != null) {
-				gf_params.gf_product_cat = $(this).attr( "gf_product_cat" ) || null;
+				rec_params.gf_product_cat = $(this).attr( "gf_product_cat" ) || null;
 			}	
 			if (typeof $(this).attr( "gf_product_tag" ) !== undefined && $(this).attr( "gf_product_tag" ) != null) {
-				gf_params.gf_product_tag = $(this).attr( "gf_product_tag" ) || null;
+				rec_params.gf_product_tag = $(this).attr( "gf_product_tag" ) || null;
 			}
 		}
 		// Call API with gf_params on $this element
 		$.ajax({
 	        url: woocommerce_params.ajax_url,
 	        type: 'POST',
-	        data: gf_params
+	        data: rec_params
     	}).done(function(html){
 			that.html( html );
     	});
