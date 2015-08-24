@@ -3,7 +3,7 @@ Contributors: graphflow
 Tags: woocommerce, recommendations, products, users, analytics, ecommerce, dashboards, customers, targeting, marketing, email, insights, intelligence, automation, cart, abandonment, triggers, personalization, coupons, smart
 Requires at least: 3.9
 Tested up to: 4.2.3
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,10 +102,10 @@ Please see our [documentation page](http://docs.woothemes.com/document/woocommer
 == Changelog ==
 
 = 3.0.1 =
-2015.08.19
+2015.08.24
 
-* Fix - compatibility with WooCommerce Follow Up Emails plugin
-* Fix - occasional AJAX rec bug
+* Fix - compatibility with plugins using ActionScheduler (e.g. WooCommerce Follow Up Emails)
+* Fix - (rare) AJAX rec mutability bug
 * Tweak - add filter for product link text in email recommendations
 
 = 3.0.0 =
