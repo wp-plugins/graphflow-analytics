@@ -101,9 +101,19 @@ if ( ! class_exists( 'WC_Graphflow' ) ) {
 
 			// add rec id to add-to-cart links
 			add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'add_rec_id_to_add_to_cart_url' ), 10, 2 );
+
+			// compatability for WC Currency Converter plugin
+			add_action( 'wp_footer', array( $this, 'wc_currency_converter_ajax_compat' ) );
 		}
 
 		//== GENERAL FUNCTIONS ==//
+
+		public function wc_currency_converter_ajax_compat() {
+			if ( class_exists( 'WC_Currency_Converter' ) ) {
+				wc_enqueue_js( "jQuery('body').bind('graphflow_get_recs_returned', function() { jQuery('body').trigger('wc_fragments_refreshed'); });" );
+			}
+
+		}
 
 		public function get_emails() {
 			if ( is_object( $this->emails ) ) {

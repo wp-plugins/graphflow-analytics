@@ -41,7 +41,11 @@ function graphflow_install_notice() {
 }
 
 function graphflow_is_plugin_page() {
-	return is_admin() && current_user_can('manage_options') && isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'graphflow-admin' ? true : false;
+	return is_admin()
+	       && current_user_can('manage_options')
+	       && isset( $_REQUEST['page'] )
+	       && ( $_REQUEST['page'] == 'graphflow-admin' || $_REQUEST['page'] == 'graphflow-admin-email' )
+		? true : false;
 }
 
 /**
@@ -61,6 +65,12 @@ function graphflow_admin_form_handler() {
 			return;
 		} else {
 			add_action( 'admin_notices', 'graphflow_admin_notices_auth_ok' );
+			return;
+		}
+	} else {
+		$auth = $GLOBALS['wc_graphflow']->get_api()->test_auth();
+		if ( !$auth ) {
+			add_action( 'admin_notices', 'graphflow_admin_notices_auth_error' );
 			return;
 		}
 	}

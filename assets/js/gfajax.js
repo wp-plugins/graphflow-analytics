@@ -84,6 +84,7 @@ jQuery( document ).ready(function( $ ) {
 	        data: rec_params
     	}).done(function(html){
 			that.html( html );
+            $('body').trigger( 'graphflow_get_recs_returned' );
     	});
 	});
 
